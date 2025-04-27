@@ -74,8 +74,9 @@ if st.sidebar.button("🔎 Predict Now"):
     # Retrieve matching patients from ACT-R and count diabetics vs non-diabetics
     matching_patients = actr_model.retrieve_all_similar_patients(actr_query)
     total_matches = len(matching_patients)
-    diabetic_count = sum(1 for patient in matching_patients if patient.get('diabetes') == 1)
+    diabetic_count = sum(1 for p in matching_patients if p['diagnosis'] == 'yes')
     non_diabetic_count = total_matches - diabetic_count
+
 
     # # this part is for displaying result 
     # Show ML result
